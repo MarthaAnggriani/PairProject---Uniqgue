@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Store</title>
+  <style>
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 75vh;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .form-field label {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .add-product-button {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- <%- include('partials/header') %> -->
+  
+  <div class="form-container">
+    <form action="/addProduct" method="POST">
+      <h1 style="text-align: center; margin-bottom: 10px;">Add Product</h1>
+      <h3 style="text-align: center;">Please fill the form below to add a new product!</h3>
+      <div class="form-field">
+        <label for="name">New Product Name:</label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div class="form-field">
+        <label for="description">Product Description:</label>
+        <input type="text" id="description" name="description">
+      </div>
+      <div class="form-field">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price">
+      </div>
+      <div class="form-field">
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock">
+      </div>
+      <div class="form-field">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating">
+      </div>
+      <div class="form-field">
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image">
+      </div>
+      <div class="form-field">
+        <label for="CategoryId">Category:</label>
+        <input type="number" id="CategoryId" name="CategoryId">
+      </div>
+      <div class="add-product-button">
+        <button type="submit">Add Product</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

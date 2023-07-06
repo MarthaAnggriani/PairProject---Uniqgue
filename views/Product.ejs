@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .product-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Products</h1>
+    <table>
+        <tr>
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Description</th>
+            <th style="text-align: center;">Price</th>
+            <th style="text-align: center;">Stock</th>
+            <th style="text-align: center;">Rating</th>
+            <th style="text-align: center;">Image</th>
+            <th style="text-align: center;">Category</th>
+        </tr>
+        <% products.forEach(function(product) { %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.description %></td>
+                <td><%= product.price %></td>
+                <td><%= product.stock %></td>
+                <td><%= product.rating %></td>
+                <td><img src="<%= product.image %>" alt="Product Image" class="product-image"></td>
+                <td><%= product.Category.name %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
