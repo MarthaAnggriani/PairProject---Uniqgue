@@ -81,14 +81,20 @@ class Controller {
         }).then(user => {
             if (!user) throw "Unregistered email";
 
-            if (user.role === 'admin') {
+            if (user.role === "admin") {
                 if (password !== user.password) {
-                    throw "Wrong password!";
+                  throw "Wrong password!";
                 }
-            } else {
+                req.session.userId = user.id;
+                req.session.role = user.role;
+                return res.redirect("/a"); // Mengarahkan admin ke halaman /a
+              } else {
                 const isValidUser = bcrypt.compareSync(password, user.password);
                 if (!isValidUser) throw "Wrong password!";
-            }
+                req.session.userId = user.id;
+                req.session.role = user.role;
+                return res.redirect("/u"); // Mengarahkan user ke halaman /u
+              }
 
             req.session.userId = user.id;
             req.session.role = user.role;
@@ -113,7 +119,7 @@ class Controller {
 
         Product.create({ name, description, price, stock, rating, image, CategoryId })
             .then(() => {
-                res.redirect("/products");
+                res.redirect("/productsAdmin");
             })
             .catch((err) => res.send(err));
     }
@@ -140,7 +146,7 @@ class Controller {
             { where: { id: productId } }
         )
             .then(() => {
-                res.redirect("/products");
+                res.redirect("/productsAdmin");
             })
             .catch((err) => {
                 console.log(err);
@@ -153,7 +159,7 @@ class Controller {
 
         Product.destroy({ where: { id: productId } })
             .then(() => {
-                res.redirect("/products");
+                res.redirect("/productsAdmin");
             })
             .catch((err) => {
                 console.log(err);

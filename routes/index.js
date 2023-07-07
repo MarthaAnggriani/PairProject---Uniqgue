@@ -16,8 +16,8 @@ router.post('/login', Controller.login);
 router.get('/logout', Controller.logout);
 router.get('/addProduct', Controller.addProductForm);
 router.post('/addProduct', Controller.addProduct);
-router.get('/products/:id/edit', authenticated, Controller.editProductForm); 
-router.post('/products/:id/edit', authenticated, Controller.editProduct); 
-router.post('/products/:id/delete', authenticated, Controller.deleteProduct);
+router.get('/productsAdmin/:id/edit', Controller.editProductForm); 
+router.post('/productsAdmin/:id/edit',Controller.editProduct); 
+router.post('/productsAdmin/:id/delete', Controller.deleteProduct);
 
 module.exports = router;

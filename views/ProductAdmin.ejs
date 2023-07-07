@@ -25,10 +25,39 @@
             max-width: 100px;
             max-height: 100px;
         }
+        
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .action-button form {
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .header a {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Our Products</h1>
+    <div class="header">
+        <h1>Our Products</h1>
+        <div>
+            <a href="/a">Home</a>
+            <a href="/">Logout</a>
+        </div>
+    </div>
     <table>
         <tr>
             <th style="text-align: center;">Name</th>
@@ -50,12 +79,10 @@
                 <td><img src="<%= product.image %>" alt="Product Image" class="product-image"></td>
                 <td><%= product.Category.name %></td>
                 <td class="action-button">
-                    <form action="/products/<%= product.id %>/edit" method="GET">
+                    <form action="/productsAdmin/<%= product.id %>/edit" method="GET">
                         <button type="submit">Edit</button>
                     </form>
-                </td>
-                <td class="action-button">
-                    <form action="/products/<%= product.id %>/delete" method="POST">
+                    <form action="/productsAdmin/<%= product.id %>/delete" method="POST">
                         <button type="submit">Delete</button>
                     </form>
                 </td>
@@ -64,3 +91,4 @@
     </table>
 </body>
 </html>
+
