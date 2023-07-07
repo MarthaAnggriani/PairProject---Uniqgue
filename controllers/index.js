@@ -1,5 +1,5 @@
 const { User, Product, Order, Category } = require('../models');
-// const formatCurrency = require('../helpers/formatCurrency');
+const formatCurrency = require('../helpers/formatCurrency');
 const bcrypt = require('bcrypt');
 
 class Controller {
@@ -27,28 +27,34 @@ class Controller {
     }
 
     static products(req, res) {
-
         Product.findAll({ include: Category })
-        .then((products) => {
-          res.render("Product", { products });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.send(err);
-        });
-    }
-
-    static productsAdmin(req, res) {
-
+          .then((products) => {
+            const formattedProducts = products.map((product) => ({
+              ...product.toJSON(),
+              price: formatCurrency(product.price),
+            }));
+            res.render('Product', { products: formattedProducts });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send(err);
+          });
+      }
+    
+      static productsAdmin(req, res) {
         Product.findAll({ include: Category })
-        .then((products) => {
-          res.render("ProductAdmin", { products });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.send(err);
-        });
-    }
+          .then((products) => {
+            const formattedProducts = products.map((product) => ({
+              ...product.toJSON(),
+              price: formatCurrency(product.price),
+            }));
+            res.render('ProductAdmin', { products: formattedProducts });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send(err);
+          });
+      }
 
     static register(req, res) {
         res.render("Register");
@@ -108,6 +114,54 @@ class Controller {
 
     static logout(req, res) {
 
+    }
+
+    static showOrders(req, res) {
+        const userId = req.session.userId;
+
+        Order.findAll({
+            where: { UserId: userId },
+            include: [Product],
+        })
+        .then((orders) => {
+            const products = orders.map((order) => order.Product);
+            res.render("Orders", { products: products });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send(err);
+        });
+    }
+
+    static orderProduct(req, res) {
+        const { productId } = req.query;
+        const userId = req.session.userId;
+    
+        Product.findByPk(productId)
+            .then((product) => {
+                if (!product) {
+                    throw new Error("Product not found");
+                }
+    
+                return Order.create({
+                    UserId: userId,
+                    ProductId: productId,
+                });
+            })
+            .then(() => {
+                return Order.findAll({
+                    where: { UserId: userId, isPaid: false }, // Add the condition for isPaid: false
+                    include: { model: Product, include: Category },
+                });
+            })
+            .then((orders) => {
+                const products = orders.map((order) => order.Product);
+                res.render("Orders", { products });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.send(err);
+            });
     }
 
     static addProductForm(req, res) {
