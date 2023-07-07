@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Floral Blouse",
+    "description": "A beautiful floral blouse perfect for any occasion.",
+    "price": 200000,
+    "stock": 50,
+    "rating": 8,
+    "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/455738/item/goods_63_455738.jpg?width=494",
+    "CategoryId": 1
+  },
+  {
+    "name": "Denim Jeans",
+    "description": "Classic denim jeans with a comfortable fit.",
+    "price": 300000,
+    "stock": 40,
+    "rating": 7,
+    "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/418910/sub/goods_418910_sub14.jpg?width=494",
+    "CategoryId": 2
+  },
+  {
+    "name": "Little Black Dress",
+    "description": "An elegant little black dress for special occasions.",
+    "price": 400000,
+    "stock": 30,
+    "rating": 9,
+    "image": "https://media.karousell.com/media/photos/products/2023/6/9/little_black_dress_uniqlo_1686283139_8bcc14dc.jpg",
+    "CategoryId": 3
+  }
+]

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+    <title>User</title>
+  </head>
+
+  <body>
+    <a href="/">Home</a> | <a href="/products">Products</a> |
+    <a href="/users">Users</a> | <a href="/userProfile">User Profile</a> |
+    <a href="/login">Login</a> |
+    <a href="/logout">Logout</a>
+    <h1>Users</h1>
+    <table>
+      <tr>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+      <% users.forEach(el=> { %>
+      <tr>
+        <td><%= el.userName %></td>
+        <td><%= el.email %></td>
+        <td><%= el.role %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

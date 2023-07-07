@@ -1,0 +1,26 @@
+[
+  {
+    "userName": "Admin1",
+    "email": "admin1@example.com",
+    "password": "admin123",
+    "role": "admin"
+  },
+  {
+    "userName": "Customer1",
+    "email": "customer1@example.com",
+    "password": "customer123",
+    "role": "customer"
+  },
+  {
+    "userName": "Admin2",
+    "email": "admin2@example.com",
+    "password": "admin456",
+    "role": "admin"
+  },
+  {
+    "userName": "Customer2",
+    "email": "customer2@example.com",
+    "password": "customer456",
+    "role": "customer"
+  }
+]

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      h1 {
+        margin-top: 100px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- include('_navbar') %>
+    <br /><br /><br /><br />
+    <div class="container">
+      <div class="row">
+        <% product.forEach((el,i)=> { %>
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="<%= el.image %>"
+              alt="Product Image"
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= el.name %></h5>
+              <p class="card-text"><%= el.description %></p>
+              <p class="card-text">Rating: <%= el.rating %></p>
+              <p class="card-text">Price: <%= formattedPrice[i] %></p>
+
+              <form action="/products" method="post">
+                <input type="hidden" name="productId" value="<%= el.id %>" />
+                <button type="submit" class="btn btn-primary">
+                  Add to Order
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

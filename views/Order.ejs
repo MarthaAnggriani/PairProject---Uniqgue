@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>List Order</title>
+    <style>
+      h1 {
+        margin-top: 70px;
+        margin-bottom: 20px;
+      }
+
+      .container,
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- include('_navbar') %>
+    <h1>List Order</h1>
+    <div class="container">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>No</th>
+            <th>Item Name</th>
+            <th>Price</th>
+            <!-- <th>Duration</th>
+                    <th>Price</th> -->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.forEach((element, i)=> { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= element.Product?.name %></td>
+            <td><%= element.price %></td>
+            <td>
+              <a
+                href="/order/detail/<%= element.UserId %>/<%= element.id %>"
+                class="btn btn-primary"
+                >Detail</a
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
